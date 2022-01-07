@@ -1,0 +1,77 @@
+#Employee Name: pay rate: hours worked 
+#for hours worked over 40 time and half
+#fed tax 10%
+#state 6%
+#FICA 3%
+#Output: employeeName, hoursWorked, Payrate, regualarPay, OTpay, Gross, FedTax, stateTax, FICA, netPAy
+#numberOfEmployee
+
+def payroll(i, count): #payroll function called to begin the process
+  employeeName = input("Enter Employee Name:  ")  #getting input from user
+  hours = float(input('How many hours did you work: '))#hours = float(userInput)
+  rate  = float(input('What is your hourly rate? '))#rate = float(userInput)
+  
+  if i >= count:  
+   while hours < 0 or hours > 8760:  #hours must be between 0 and 8760
+      print ("Error- Hours must be at least 8 and less than 8760")
+      hours = float(input('re-enter hours worked: ')) #get new hours from user       
+  else:
+    print("Error")
+  
+  grosspay = hours * rate #operation for Grosspay
+  fedTax = grosspay * 0.10#operation for Federal Tax
+  stateTax = grosspay * .06#operation for State tax
+  fica = grosspay * .03#$Fica operation
+  totaltax = fedTax + stateTax + fica#total of taxes
+  netpay = grosspay - totaltax #users Netpay(take home)
+  while rate < 7 or rate > 1000: #boundaries for rate of pay to meet min wage
+      print ("Error- Payrate must be at least $7.00 and less than $1000.00")
+      rate = float(input('re-enter your hourly rate: '))
+# if- else statements for number of hours split from 0-40, to 41-8790
+  if hours <= 40: 
+      print ("  Payroll Information")
+      print("-------------------------")
+      print("Name: ", employeeName)
+      print ("Pay rate          $",format(rate,'7.2f'))
+      print ("Regular Hours        ", format (hours, '2.0f'))
+      print ("Overtime Hours         0")
+      print ("Regular pay       $", format (hours*rate, '7.2f'))
+      print ("Overtime pay      $    0.00")
+      print ("Gross pay:        $", format (hours*rate, '7.2f'))
+      print("Federal Tax:       $ ", format (fedTax, '7.2f')) 
+      print("State Tax:         $ ", format (stateTax, '7.2f'))
+      print("FICA:              $", format (fica, '7.2f'))
+      print("Netpay:            $", format (netpay, '7.2f'))
+      
+      
+  elif hours >= 40:
+    othours = hours - 40
+    otpay = othours * (rate * 1.5)
+    regularpay = 40 * rate
+
+    print ("  Payroll Information")
+    print("-------------------------")
+    print("Name: ", employeeName)
+    print ("Pay rate          $", format (rate,'7.2f'))
+    print ("Regular Hours        ", format (hours, '2.0f'))
+    print ("Overtime Hours       ", format (othours, '2.0f'))
+    print ("Regular pay       $", format (hours*rate, '7.2f'))
+    print ("Overtime pay      $", format (otpay, '7.2f'))
+    print ("Gross pay:        $", format (regularpay+otpay,'7.2f'))
+    print("Federal Tax:       $ ", format (fedTax, '7.2f'))
+    print("State Tax:         $", format (stateTax, '7.2f'))
+    print("FICA:              $", format (fica, '7.2f'))
+    print("Netpay:            $ ", format (netpay, '7.2f'))
+    
+  else:
+    print("ERROR")
+i = int(input('How many employees are you processing?:   ')) #get index from User
+count = 0 #initalize count
+while i > count: #while index is less than count 
+    
+    payroll(i, count) #calling payroll function
+    count += 1 #after called count will add +1
+else: #when count is greater than index 
+    print("-----------------")
+    print("Payroll Processed")   
+    print("-------------------")
