@@ -1,0 +1,17 @@
+import random #library in python common operation already built-in(their are libraries for most things you would like(i.e array, or random))
+
+n = random.randint(1,99) #assigning n as a random number from the random.randint()
+guess = int(input("Enter a number Between 1-99: "))#user input to get n
+
+while n != guess:# N is not equal to guess
+  print
+  if guess < n: # guess is lower than N
+    print("print is to low")
+    guess = int(input("Enter a number Between 1-99: "))    
+  elif guess > n:  # guess is Higher than N
+    print ("guess is high")
+    guess = int(input("Enter a number Between 1-99: "))
+  else: #User guess correctly
+    print("you guessed it!")
+    break
+ 
